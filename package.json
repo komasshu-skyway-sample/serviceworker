@@ -1,0 +1,16 @@
+{
+  "name": "swhack",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "~4.12.3",
+    "socket.io": "~1.3.5"
+  }
+}
