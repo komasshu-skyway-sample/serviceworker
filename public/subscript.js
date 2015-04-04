@@ -50,7 +50,7 @@ function initialiseState() {
 
         // Set your UI to show they have subscribed for  
         // push messages  
-        pushButton.textContent = 'Disable Push Messages';  
+        pushButton.textContent = '通知を受け取らない。';  
         isPushEnabled = true;  
       })  
       .catch(function(err) {  
@@ -73,7 +73,7 @@ function subscribe() {
       .then(function(subscription) {  
         // The subscription was successful  
         isPushEnabled = true;  
-        pushButton.textContent = 'Disable Push Messages';  
+        pushButton.textContent = '通知を受け取らない。';  
         pushButton.disabled = false;
 
         //console.log(subscription);
@@ -114,7 +114,7 @@ function subscribe() {
           // gcm_user_visible_only in the manifest.  
           console.error('Unable to subscribe to push.', e);  
           pushButton.disabled = false;  
-          pushButton.textContent = 'Enable Push Messages';  
+          pushButton.textContent = '通知を受け取るよ。';  
         }  
       });  
   });  
@@ -137,7 +137,7 @@ function unsubscribe() {
           // to allow the user to subscribe to push  
           isPushEnabled = false;  
           pushButton.disabled = false;  
-          pushButton.textContent = 'Enable Push Messages';  
+          pushButton.textContent = '通知を受け取るよ。';  
           return;  
         }  
           
@@ -149,7 +149,7 @@ function unsubscribe() {
         // We have a subscription, so call unsubscribe on it  
         pushSubscription.unsubscribe().then(function(successful) {  
           pushButton.disabled = false;  
-          pushButton.textContent = 'Enable Push Messages';  
+          pushButton.textContent = '通知を受け取るよ。';  
           isPushEnabled = false;  
         }).catch(function(e) {  
           // We failed to unsubscribe, this can lead to  
@@ -159,15 +159,13 @@ function unsubscribe() {
 
           console.log('Unsubscription error: ', e);  
           pushButton.disabled = false;
-          pushButton.textContent = 'Enable Push Messages'; 
+          pushButton.textContent = '通知を受け取るよ。'; 
         });  
       }).catch(function(e) {  
         console.error('Error thrown while unsubscribing from push messaging.', e);  
       });  
   });  
 }
-
-
 
 
 window.addEventListener('load', function() {  
@@ -191,3 +189,11 @@ window.addEventListener('load', function() {
   }  
 });
 
+window.addEventListener('message', function(e){
+  console.log(e);
+}, false);
+
+
+window.onmessage = function(e){
+  console.log(e);
+}
