@@ -1,19 +1,12 @@
 <html>
   <head>
-    <meta charset="utf8">
+    <meta charset="utf-8">
     <title></title>
 
     <link rel="manifest" href="manifest.json">
-    <meta charset="utf-8">
-    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-    <script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
-    <!--script src="/socket.io/socket.io.js"></script-->
   </head>
 
   <body>    
-    Hello, world!!
-    <button id="send">send hello</button>
-
     <script charset="utf-8">
     if('serviceWorker' in navigator) {
       navigator.serviceWorker.register('./sw.js').then(function(registration) {
@@ -23,21 +16,9 @@
         console.log('ServiceWorker registration failed: ', err);
       })
     }
-
-    var s = io.connect(location.origin);
-
-    s.on('connect', function(ev){
-      $("#send").on("click", function(ev){
-        s.emit('mesg', "hello")
-      })
-
-      s.on('mesg', function(data){
-        console.log(data);
-      })
-    });
     </script>
 
-
+    <!-- Miku L-Chika -->
     <link rel="import" href="./bower_components/x-webmidi/x-webmidirequestaccess.html">
     <x-webmidirequestaccess sysex="true" input="true" output="true"></x-webmidirequestaccess>
     <div>pokemiku: <x-webmidioutput id="pokemiku"></x-webmidioutput></div>
@@ -46,6 +27,8 @@
 
     <script src="js/nsx39.js"></script>
     <script src="js/webmidi_app.js"></script>
+
+    <script src="twitter.js"></script>
 
     <button class="js-push-button" disabled> 
       プッシュメッセージを受け取るよ。 

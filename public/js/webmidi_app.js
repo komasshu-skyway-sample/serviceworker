@@ -32,7 +32,7 @@ webmidi_app.prototype={
         }
         var sysEx=nsx39.getUpdateSysExByText(text.replace(/。/g, "").replace(/ /g, ""), 0, false);
         miku_device.sendRawMessage(sysEx.sysEx, 0);
-        var time=0, interval=1500;
+        var time=0, interval=500;
         for(var i=0; i<text.length; i++) {
             miku_device.sendRawMessage([0x90, 0x45, 0x45], time);
             miku_device.sendRawMessage([0x80, 0x45, 0x45], time+interval);
