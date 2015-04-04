@@ -1,0 +1,21 @@
+<html>
+  <head></head>
+  <style>
+  div {
+    margin-top:10px;
+  }
+  </style>
+  <body>
+    <div><input id="pokemikutext" size="40" style="margin:0px 5px 0px 0px; padding:2px;"><button id="sendpokemikutext">Play Pokemiku</button></div>
+    <div><button id="arduinolchika">L-Chika Arduino</button></div>
+    <script>
+    document.getElementById("sendpokemikutext").addEventListener("mousedown", function(event){
+        var text=document.getElementById("pokemikutext").value;
+        window.parent.mapp.playMiku(text);
+    });
+    document.getElementById("arduinolchika").addEventListener("mousedown", function(event){
+        window.parent.mapp.lChika();
+    });
+    </script>
+  </body>
+</html>
