@@ -196,7 +196,8 @@ window.addEventListener('message', function(e){
 
 window.onmessage = function(e){
     console.log(e);
-    mapp.lChika();
-    mapp.playMiku("なんかきたよ");
+    var msg="なんかきたよ";
+    mapp.lChika(msg.length);
+    mapp.playMiku(msg);
 };
 

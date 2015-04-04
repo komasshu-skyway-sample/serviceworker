@@ -40,14 +40,17 @@ webmidi_app.prototype={
         }
         console.log("[Send Text] ", sysEx, text);
     },
-    lChika: function() {
+    lChika: function(blinkNum) {
+        console.log(blinkNum);
+        if(typeof blinkNum=="undefined") blinkNum=12;
+        blinkNum=blinkNum+blinkNum%2;
         var arduino_device=document.getElementById(this.arduino_device);
         if(arduino_device.checkOutputIdx()=="false") {
             console.log("[ERROR] Select Arduino Output Device");
             return;
         }
         var time=0, interval=250;
-        for(var i=0; i<12; i++) {
+        for(var i=0; i<blinkNum*2; i++) {
             time+=interval;
             if(i%2==0) arduino_device.sendRawMessage([0x90, 0x45, 0x45], time);
             if(i%2==1) arduino_device.sendRawMessage([0x80, 0x45, 0x45], time+interval/2);

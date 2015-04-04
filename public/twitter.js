@@ -7,8 +7,8 @@ function consume(reader) {
         _arrayBufferToString(r.value, function(str){
           // todo mesgを河合さんのに送る
           var mesg = str.split(" ")[0];
-            mapp.lChika();
             mapp.playMiku(mesg);
+            mapp.lChika(mesg.length);
             
             console.log(mesg);
         })
