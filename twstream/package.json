@@ -1,17 +1,14 @@
 {
-  "name": "swhack",
-  "version": "0.0.0",
+  "name": "twstream",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": "",
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "express": "~4.12.3",
-    "ntwitter": "^0.5.0",
-    "socket.io": "~1.3.5"
+    "ntwitter": "^0.5.0"
   }
 }

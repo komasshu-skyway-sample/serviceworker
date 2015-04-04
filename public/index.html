@@ -2,6 +2,9 @@
   <head>
     <meta charset="utf8">
     <title></title>
+
+    <link rel="manifest" href="manifest.json">
+    <meta charset="utf-8">
     <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
     <script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
     <!--script src="/socket.io/socket.io.js"></script-->
@@ -12,7 +15,6 @@
     <button id="send">send hello</button>
 
     <script charset="utf-8">
-/*
     if('serviceWorker' in navigator) {
       navigator.serviceWorker.register('./sw.js').then(function(registration) {
         console.log('ServiceWorker registration successful with scope: ', registration.scope);
@@ -33,7 +35,6 @@
         console.log(data);
       })
     });
-*/
     </script>
 
 
@@ -46,6 +47,12 @@
     <script src="js/nsx39.js"></script>
     <script src="js/webmidi_app.js"></script>
 
+    <button class="js-push-button" disabled> 
+      プッシュメッセージを受け取るよ。 
+    </button>
+    <div id="subscription-info"></div>
+
+    <script src="subscript.js"></script>
 
   </body>
 </html>
