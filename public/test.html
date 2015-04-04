@@ -5,5 +5,30 @@
   <body>
     It works!!
 
+<script charset="utf-8">
+function consume(reader) {
+  var chunks = [];
+  function rec() {
+    return reader.read().then(function(r) {
+      if (r.done) { return chunks; }
+      else {
+        console.log(r.value);
+        chunks.push(r.value);
+        return rec();
+      }
+    });
+  }
+  return rec();
+}
+
+
+fetch("/stream").then(function(res) {
+  console.log("fetch consumed")
+  return consume(res.body.getReader());
+}).then(function(chunks) {
+  // We have the body string here!
+  console.log(chunks);
+});
+</script>
   </body>
 </html>

@@ -8,6 +8,9 @@ addEventListener("message", function(ev){
   console.log(ev);
 }, false)
 
+
+
+
 /*
 navigator.requestMIDIAccess().then(function(m){
   console.log("success to access MIDI: ", m);
