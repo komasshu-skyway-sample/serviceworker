@@ -54,10 +54,10 @@ app.get('/stream', function(req, res){
   }
 
   async.on('send', cb);
-  // setTimeout(function(ev){
-   // async.removeListener('send', cb);
-  //   res.end();
-  // }, 3000)
+  
+  req.on('close', function(ev){
+    async.removeListener('send', cb);
+  })
 })
 
 server.listen(port)
