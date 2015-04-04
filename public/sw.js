@@ -12,10 +12,16 @@ addEventListener("message", function(ev){
 self.addEventListener('push', function(event) {  
   console.log('Received a push message', event);
 
-  var title = 'Yay a message.';  
+  var title = 'メッセージを受け取ったよ';  
   var body = 'We have received a push message.';  
-  var icon = '/images/icon-192x192.png';  
+  var icon = '/miku.jpg';  
   var tag = 'simple-push-demo-notification-tag';
+
+  clients.matchAll().then(function(clients){
+    console.log(clients);
+    clients[0].postMessage("aaa");
+    if(clients[1]) clients[1].postMessage("aaa");
+  });
 
   event.waitUntil(  
     self.registration.showNotification(title, {  
@@ -34,6 +40,10 @@ self.addEventListener('notificationclick', function(e){
 
 });
 
+
+self.addEventListener('message', function(e){
+  console.log(e);
+});
 
 
 /*
