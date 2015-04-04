@@ -22,7 +22,7 @@ function asyncFunc() {
   var ev = new EventEmitter;
   console.log('in asyncFunc');
 
-  tw.stream('statuses/filter', {'track':'google'}, function(stream) {
+  tw.stream('statuses/filter', {'track':'#さーびすわーかー'}, function(stream) {
     stream.on('data', function (data) {
       console.log(data.text);
       ev.emit('send', data.text);
@@ -42,6 +42,7 @@ io.on('connection', function(s){
   })
 });
 
+
 app.get('/stream', function(req, res){
 
   res.setHeader("Content-Type", "application/octet-stream; charset=UTF-8");
@@ -53,10 +54,10 @@ app.get('/stream', function(req, res){
   }
 
   async.on('send', cb);
-  setTimeout(function(ev){
-    async.removeListener('send', cb);
-    res.end();
-  }, 3000)
+  // setTimeout(function(ev){
+   // async.removeListener('send', cb);
+  //   res.end();
+  // }, 3000)
 })
 
 server.listen(port)
