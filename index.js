@@ -4,9 +4,8 @@ var express = require('express')
   , io = require('socket.io')(server)
   , twitter = require('ntwitter')
   , EventEmitter = require('events').EventEmitter
-  , fs = require('fs')
-
-var conf = JSON.parse(fs.readFileSync(__dirname + "/conf/twitter.conf"));
+  , logger = require('log4js').getLogger()
+  , conf = require("./conf/twitter.json")
 
 console.log(conf);
 
@@ -18,13 +17,15 @@ var tw = new twitter({
 });
 var port = process.env.VCAP_APP_PORT || process.env.PORT || 3000;
 
+var track_word = "#nowplaying";
+
 function asyncFunc() {
   var ev = new EventEmitter;
   console.log('in asyncFunc');
 
-  tw.stream('statuses/filter', {'track':'#さーびすわーかー'}, function(stream) {
+  tw.stream('statuses/filter', {'track':track_word}, function(stream) {
     stream.on('data', function (data) {
-      console.log(data.text);
+      logger.info(data.text);
       ev.emit('send', data.text);
     });
   });
@@ -44,18 +45,19 @@ io.on('connection', function(s){
 
 
 app.get('/stream', function(req, res){
+  var cnt = 0;
 
   res.setHeader("Content-Type", "application/octet-stream; charset=UTF-8");
   res.setHeader("Transfer-Encoding", "chunked");
 
-  var cb = function(arg){
-    console.log(arg);
-    res.write(arg)
-  }
+  async.on('send', function(data) {
+      res.write(data)
 
-  async.on('send', cb);
-  
+      if(cnt++ > 1000) res.end("");
+  });
+
   req.on('close', function(ev){
+    cnt = 0;
     async.removeListener('send', cb);
   })
 })

@@ -1,16 +1,17 @@
 function consume(reader) {
   var chunks = [];
+  var cnt = 0;
   function rec() {
     return reader.read().then(function(r) {
-      if (r.done) { return chunks; }
+      if (r.done) { return "finished!!"; }
       else {
         _arrayBufferToString(r.value, function(str){
-          // todo mesgを河合さんのに送る
-          var mesg = str.split(" ")[0];
-            mapp.playMiku(mesg);
-            mapp.lChika(mesg.length);
-            
-            console.log(mesg);
+          var mesg = str;
+          //   mapp.playMiku(mesg);
+          //   mapp.lChika(mesg.length);
+          cnt++;
+          $("#messages").html("message no." + cnt + ": " + mesg);
+
         })
         return rec();
       }
@@ -33,6 +34,5 @@ fetch("/stream").then(function(res) {
   console.log("fetch consumed")
   return consume(res.body.getReader());
 }).then(function(chunks) {
-  // We have the body string here!
   console.log(chunks);
 });

@@ -3,10 +3,12 @@
     <meta charset="utf-8">
     <title></title>
 
+
     <link rel="manifest" href="manifest.json">
+    <script src="/js/jquery-2.1.4.js"></script>
   </head>
 
-  <body>    
+  <body>
     <script charset="utf-8">
     if('serviceWorker' in navigator) {
       navigator.serviceWorker.register('./sw.js').then(function(registration) {
@@ -19,6 +21,7 @@
     </script>
 
     <!-- Miku L-Chika -->
+    <!--
     <link rel="import" href="./bower_components/x-webmidi/x-webmidirequestaccess.html">
     <x-webmidirequestaccess sysex="true" input="true" output="true"></x-webmidirequestaccess>
     <div>pokemiku: <x-webmidioutput id="pokemiku"></x-webmidioutput></div>
@@ -27,15 +30,18 @@
 
     <script src="js/nsx39.js"></script>
     <script src="js/webmidi_app.js"></script>
+    -->
 
     <script src="twitter.js"></script>
 
-    <button class="js-push-button" disabled> 
-      プッシュメッセージを受け取るよ。 
+    <button class="js-push-button" disabled>
+      プッシュメッセージを受け取るよ。
     </button>
     <div id="subscription-info"></div>
 
     <script src="subscript.js"></script>
+
+    <div id="messages"></div>
 
   </body>
 </html>
